@@ -1,24 +1,10 @@
+<header>FOLDER STRUCTURE MAKER</header>
+<div role="main" class="m-4">
+  <button class="mt-2">Add folder to root</button>
+  <ul *ngIf="files">
+    <li class="root mb-2" *ngFor="let file of files">
+      <app-file-item [item]="file" [depth]=0></app-file-item>
+    </li>
+  </ul>
+</div>
 
-<ul *ngIf="files">
-  <li class="root" *ngFor="let file of files">
-    <app-file-item [item]="file" [depth]=0></app-file-item>
-  </li>
-<!--  <li>-->
-<!--    Lorem ipsum-->
-
-
-<!--    <ul>-->
-<!--      <li>Adipiscing elit.</li>-->
-<!--      <li>Tincidunt mauris eu risus.</li>-->
-<!--      <li>Vestibulum </li>-->
-<!--    </ul>-->
-<!--  </li>-->
-<!--  <li>Aliquam</li>-->
-<!--  <li>-->
-<!--    Dapibus-->
-<!--    <ul>-->
-<!--      <li>Aliquam tincidunt mauris eu risus.</li>-->
-<!--      <li>Vestibulum auctor dapibus neque.</li>-->
-<!--    </ul>-->
-<!--  </li>-->
-</ul>

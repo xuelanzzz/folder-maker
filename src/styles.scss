@@ -1,1 +1,33 @@
-/* You can add global styles to this file, and also import other style files */
+@import "src/variables";
+ul {
+  list-style-type: none;
+}
+
+header {
+  background-color: $dark;
+  color: white;
+  padding: 1rem;
+  font-weight: bold;
+  font-size: 2rem;
+  text-align: center;
+}
+
+button {
+  background-color: $dark;
+  color: white;
+  padding: 0.5rem;
+  border-radius: 5%;
+}
+
+.mt-2 {
+  margin-top: ($spacer * .5) !important;
+}
+
+
+.mb-2 {
+  margin-bottom: ($spacer * .5) !important;
+}
+
+.m-4 {
+  margin: ($spacer * 2) !important;
+}
