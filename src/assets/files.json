@@ -1,0 +1,36 @@
+[
+  {
+    "id": "1",
+    "type": "folder",
+    "name": "root folder",
+    "children": [
+      {
+        "id": "2",
+        "type": "file",
+        "name": "a file"
+      },
+      {
+        "id": "3",
+        "type": "file",
+        "name": "a file 2"
+      }
+    ]
+  },
+  {
+    "id": "root2",
+    "type": "folder",
+    "name": "root folder2",
+    "children": [
+      {
+        "id": "2",
+        "type": "file",
+        "name": "a file"
+      },
+      {
+        "id": "3",
+        "type": "file",
+        "name": "a file 2"
+      }
+    ]
+  }
+]

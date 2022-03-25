@@ -1,0 +1,8 @@
+<ul [style.margin-left.rem]="depth">
+  <li>
+    <div>{{item.name}}</div>
+    <ng-container *ngFor="let child of item.children">
+      <app-file-item [item]="child" [depth]="depth+1"></app-file-item>
+    </ng-container>
+  </li>
+</ul>
