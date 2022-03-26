@@ -3,29 +3,27 @@ import {NodeModel} from './node.model';
 import {HttpClient} from "@angular/common/http";
 import {BehaviorSubject} from "rxjs";
 
-const fileUrl = 'assets/files.json';
-
 @Injectable({
   providedIn: 'root'
 })
 export class FilesService {
-  filesSub: BehaviorSubject<NodeModel[]> = new BehaviorSubject<NodeModel[]>([]);
-  files$ = this.filesSub.asObservable();
+  nodesSub: BehaviorSubject<NodeModel[]> = new BehaviorSubject<NodeModel[]>([]);
+  nodes$ = this.nodesSub.asObservable();
 
-  constructor(
-  ) {}
-
-  getFiles() {
-    return this.files$;
+  constructor() {
   }
 
-  addRoot(file: NodeModel) {
-    const currentFiles = this.filesSub.value;
-    this.filesSub.next([...currentFiles, file]);
+  getNodes() {
+    return this.nodes$;
   }
 
-  addFile(node: NodeModel, current: NodeModel) {
-    const currentFiles = this.filesSub.value;
+  addRoot(node: NodeModel) {
+    const currentFiles = this.nodesSub.value;
+    this.nodesSub.next([...currentFiles, node]);
+  }
+
+  addNode(node: NodeModel, current: NodeModel) {
+    const currentFiles = this.nodesSub.value;
     if (!current.children) current.children = [];
     current.children = [...current.children, node];
     while (current.parent) {
@@ -35,24 +33,26 @@ export class FilesService {
     }
     const index = currentFiles.findIndex(f => f.id === current.id);
     currentFiles.splice(index, 1, current);
-    this.filesSub.next(currentFiles);
+    this.nodesSub.next(currentFiles);
   }
 
-  deleteFile(node: NodeModel) {
-    const currentFiles = this.filesSub.value;
+  deleteNode(node: NodeModel) {
+    const currentFiles = this.nodesSub.value;
     let newFiles;
+    // delete root node
     if (currentFiles.find(f => f.id === node.id)) {
       newFiles = currentFiles.filter(f => f.id !== node.id);
     } else {
-      newFiles = currentFiles.map(tree => this.deleteNode(tree, node.id));
+      // delete node in one one the root node children
+      newFiles = currentFiles.map(tree => this.deleteNodeInChildren(tree, node.id));
     }
-    this.filesSub.next(newFiles);
+    this.nodesSub.next(newFiles);
   }
 
-  private deleteNode(tree, id) {
+  private deleteNodeInChildren(tree, id) {
     if (!tree.children) return tree;
     tree.children = tree.children.filter(subtree => {
-      if (subtree.children) this.deleteNode(subtree, id);
+      if (subtree.children) this.deleteNodeInChildren(subtree, id);
       return subtree.id !== id;
     })
     return tree;

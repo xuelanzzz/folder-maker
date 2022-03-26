@@ -27,7 +27,7 @@ export class AppComponent implements OnInit {
   }
 
   getFiles() {
-    return this.fileService.getFiles();
+    return this.fileService.getNodes();
   }
 
   addToRoot() {

@@ -1,9 +1,10 @@
 @import "src/variables";
 
 ul {
-  margin: 0px 0px 0px 20px;
+  margin: 0;
   list-style: none;
-  line-height: 2em;
+  line-height: 2rem;
+  padding-left: 2rem;
   font-family: Arial;
 
   li {
@@ -53,4 +54,27 @@ ul {
       }
     }
   }
+}
+
+
+.button-show-on-hover {
+  button {
+    display: none;
+  }
+
+  &:hover {
+    .item-container {
+      border: 1px solid;
+    }
+
+    button {
+      display: inline-block;
+    }
+  }
+}
+
+.item-container {
+  padding: 5px;
+  display: flex;
+  width: fit-content;
 }

@@ -1,32 +1,31 @@
-<ul [style.margin-left.rem]="depth">
+<ul>
   <li [class]="innerClass">
-    <div>
-      <span *ngIf="item.type==='file'"><img src="/assets/images/file-regular.svg"/></span>
-      <span *ngIf="item.type==='folder'"><img src="/assets/images/folder-open-regular.svg"/></span>
-      <span class="ml-1">{{item.name}}</span>
-      <div class="show-on-hover">
+    <div class="button-show-on-hover">
+      <div class="item-container d-flex align-items-center">
+        <img *ngIf="item.type==='file'" src="/assets/images/file-regular.svg"/>
+        <img *ngIf="item.type==='folder'" src="/assets/images/folder-open-regular.svg"/>
+        <div class="ml-1">{{item.name}}</div>
         <button *ngIf="item.type==='folder'" (click)="showOptions=!(showOptions || showForm)" class="round-icon ml-2">
           &#43;
         </button>
         <button (click)="deleteItem()" class="round-icon ml-2"><img src="/assets/images/trash.svg"/></button>
       </div>
+      <div *ngIf="showOptions">
+        <button type="button" (click)="setType('folder'); showOptions = false; showForm=true">Folder</button>
+        <button type="button" (click)="setType('file'); showOptions = false; showForm=true">File</button>
+      </div>
+      <div *ngIf="showForm" class="mt-2 d-flex">
+        <div [formGroup]="form">
+          <input id="title" type="text" formControlName="name"/>
+          <button aria-label="add root folder" type="submit" class="icon" [disabled]="!form.valid" (click)="addItem()">
+            &#10004;
+          </button>
+          <button aria-label="close" class="icon" (click)="closeForm(); showOptions=false">x</button>
+        </div>
+      </div>
     </div>
-
     <ng-container *ngFor="let child of item.children">
-      <app-file-item [item]="child" [depth]="depth+1"></app-file-item>
+      <app-file-item [item]="child"></app-file-item>
     </ng-container>
   </li>
-  <div *ngIf="showOptions">
-    <button type="button" (click)="setType('folder'); showOptions = false; showForm=true">Folder</button>
-    <button type="button" (click)="setType('file'); showOptions = false; showForm=true">File</button>
-  </div>
-  <div *ngIf="showForm" class="mt-2 d-flex">
-    <div [formGroup]="form">
-      <input id="title" type="text" formControlName="name"/>
-      <button aria-label="add root folder" type="submit" class="icon" [disabled]="!form.valid" (click)="addItem()">
-        &#10004;
-      </button>
-      <button aria-label="close" class="icon" (click)="closeForm(); showOptions=false">x</button>
-    </div>
-  </div>
 </ul>

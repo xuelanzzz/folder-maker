@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {NodeModel} from "../node.model";
 import {FilesService} from "../files.service";
-import {FormBuilder, FormGroup} from "@angular/forms";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-file-item',
@@ -10,12 +10,11 @@ import {FormBuilder, FormGroup} from "@angular/forms";
 })
 export class FileItemComponent implements OnInit {
   @Input() item: NodeModel;
-  @Input() depth: number = 0;
   @Input() innerClass;
   showOptions = false;
   showForm = false;
   form = this.fb.group({
-    name: [''],
+    name: ['', [Validators.required]],
     type: [''],
   })
 
@@ -33,11 +32,11 @@ export class FileItemComponent implements OnInit {
   }
 
   deleteItem() {
-    this.fileService.deleteFile(this.item);
+    this.fileService.deleteNode(this.item);
   }
 
   addItem() {
-    this.fileService.addFile({...this.form.value, parent: this.item, id: new Date().getTime().toString(),}, this.item);
+    this.fileService.addNode({...this.form.value, parent: this.item, id: new Date().getTime().toString(),}, this.item);
     this.closeForm();
   }
 

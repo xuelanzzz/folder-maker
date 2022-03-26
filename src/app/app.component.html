@@ -4,7 +4,7 @@
 
   <ul *ngIf="files">
     <li class="mb-2" *ngFor="let file of files">
-     <app-file-item [innerClass]="'root'" [item]="file" [depth]=0></app-file-item>
+     <app-file-item [innerClass]="'root'" [item]="file"></app-file-item>
     </li>
   </ul>
   <div *ngIf="showRootFrom" class="mt-2 d-flex">
