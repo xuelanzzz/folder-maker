@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {HttpClientModule} from "@angular/common/http";
 import { FileItemComponent } from './file-item/file-item.component';
+import {ReactiveFormsModule} from "@angular/forms";
 
 
 @NgModule({
@@ -16,6 +17,7 @@ import { FileItemComponent } from './file-item/file-item.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

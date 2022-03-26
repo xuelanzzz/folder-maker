@@ -1,10 +1,16 @@
 <header>FOLDER STRUCTURE MAKER</header>
 <div role="main" class="m-4">
-  <button class="mt-2">Add folder to root</button>
+  <button class="mt-2" (click)="showRootFrom = true">Add folder to root</button>
+
   <ul *ngIf="files">
-    <li class="root mb-2" *ngFor="let file of files">
-      <app-file-item [item]="file" [depth]=0></app-file-item>
+    <li class="mb-2" *ngFor="let file of files">
+     <app-file-item [innerClass]="'root'" [item]="file" [depth]=0></app-file-item>
     </li>
   </ul>
+  <div *ngIf="showRootFrom" class="mt-2 d-flex">
+    <input id="title" type="text" required [formControl]="formTitle"/>
+    <button aria-label="add root folder" type="submit" class="icon" [disabled]="!formTitle.valid" (click)="addToRoot()">&#10004;</button>
+    <button aria-label="close" class="icon" (click)="closeRootForm()">x</button>
+  </div>
 </div>
 

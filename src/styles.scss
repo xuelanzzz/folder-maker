@@ -3,6 +3,11 @@ ul {
   list-style-type: none;
 }
 
+img {
+  max-width: 20px;
+}
+
+
 header {
   background-color: $dark;
   color: white;
@@ -15,12 +20,36 @@ header {
 button {
   background-color: $dark;
   color: white;
-  padding: 0.5rem;
+  padding: 5px;
   border-radius: 5%;
+
+  &.icon {
+    width: 2rem;
+  }
+
+  &.round-icon {
+    border-radius: 50%;
+    width: 1.5rem;
+    height: 1.5rem;
+  }
 }
 
 .mt-2 {
   margin-top: ($spacer * .5) !important;
+}
+
+.pt-2 {
+  pading-top: ($spacer * .5) !important;
+}
+
+
+
+.ml-1 {
+  margin-left: ($spacer * .25) !important;
+}
+
+.ml-2 {
+  margin-left: ($spacer * .5) !important;
 }
 
 
@@ -31,3 +60,11 @@ button {
 .m-4 {
   margin: ($spacer * 2) !important;
 }
+
+input {
+  padding: 5px;
+}
+
+
+
+

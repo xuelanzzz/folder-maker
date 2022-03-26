@@ -3,4 +3,5 @@ export interface NodeModel {
   name?: string;
   children?: NodeModel[];
   id: string;
+  parent: NodeModel | null;
 }
